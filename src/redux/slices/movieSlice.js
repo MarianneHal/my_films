@@ -7,46 +7,26 @@ const initialState = {
     errors: null,
     loading: null,
     movieDetails: {},
+    genres:[],
     currentPage: 1
 
 }
 
 const getAll =  createAsyncThunk(
     'movieSlice/getAll',
-    async ({page,genre}, thunkApi) => {
+    async (_, thunkApi) => {
         try{
-            const {data} = await movieService.getMovies(page, genre);
-            return data
+            const {data} = await movieService.getAll(1);
+            return data.results
         }catch (e) {
             return thunkApi.rejectWithValue(e.response.data)
         }
     }
 );
 
-const searchMovie = createAsyncThunk(
-    'movieSlice/searchMovie',
-    async ({query, page}, thunkApi) => {
-        try{
-            const {data} = await movieService.getAll(query, page);
-            return data;
-        }catch (e) {
-            return thunkApi.rejectWithValue(e.response.data)
-        }
-    }
-);
 
-const getById = createAsyncThunk(
-    'moviesSlice/getById',
-    async ({id}, {rejectWithValue}) => {
 
-        try {
-            const {data} = await movieService.getById(id);
-            return data;
-        } catch (e) {
-            return rejectWithValue(e.response.data)
-        }
-    }
-);
+
 
 const movieSlice = createSlice({
     name: 'movieSlice',
@@ -57,9 +37,8 @@ const movieSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.movies = action.payload.results
+                state.movies = action.payload
                 state.loading = false;
-                state.currentPage = action.payload.page;
             })
             .addCase(getAll.rejected, (state, action) =>{
                 state.errors = action.payload;
@@ -75,9 +54,7 @@ const movieSlice = createSlice({
 const {reducer:movieReducer} = movieSlice;
 
 const movieAction = {
-    getAll,
-    searchMovie,
-    getById
+    getAll
 }
 
 export {

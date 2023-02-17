@@ -12,10 +12,6 @@ apiService.interceptors.request.use((config) => {
     return config;
 })
 
-apiService.interceptors.response.use((config) => {
-    return config
-})
-
 export {
     apiService
 };
