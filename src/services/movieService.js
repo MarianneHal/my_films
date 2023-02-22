@@ -3,12 +3,15 @@ import {urls} from "../configs";
 
 
 
+
 const movieService = {
-    getAll: (page) => apiService.get(`${urls.movies}${page}`),
-    searchMovies: (name) => apiService.get(`${urls.search}${name}`),
+    getAll: (page=1, genre='') => apiService.get(urls.movies, {params: {page, genre}}),
+    searchMovies: (query='', page=1) => apiService.get(urls.search, {params: {query, page}}),
     getGenre:() => apiService.get(urls.genres)
 };
 
+
+
 export {
     movieService
-};
+}

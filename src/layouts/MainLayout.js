@@ -1,17 +1,17 @@
 import {Outlet} from "react-router-dom";
 
-import {Header, Movies} from "../components";
-
+import {Header} from "../components";
+import css from './layout.module.css';
+import {MoviesPage} from "../pages";
 
 
 const MainLayout = () => {
 
     return (
-        <div>
+        <div className={css.main}>
               <Header/>
               <Outlet/>
-             <Movies/>
-
+              <MoviesPage/>
 
         </div>
     )
