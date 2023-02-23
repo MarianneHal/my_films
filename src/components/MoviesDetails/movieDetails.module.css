@@ -1,0 +1,35 @@
+.main {
+    background-color: lavenderblush;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.mainDiv {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+
+
+.textOverview {
+    font-size: 15px;
+    font-family: "Arial Unicode MS";
+    width: 60%;
+    color: rosybrown;
+    border: 1px solid rosybrown;
+    border-radius: 10px;
+}
+.title {
+    font-size: 30px;
+    font-family: "Arial Unicode MS";
+    color: rosybrown;
+}
+
+.detailBtn {
+    width: 30px;
+    height: 30px;
+    background-color: rosybrown;
+}

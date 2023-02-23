@@ -1,0 +1,53 @@
+.movie {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.input {
+    width: 500px;
+    height: 50px;
+    background-color: lavenderblush;
+}
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.btn {
+    height: 58px;
+    width: 50px;
+    background-color: rosybrown;
+}
+
+
+.btn_genres {
+    height: 58px;
+    width: 100px;
+    background-color: rosybrown;
+}
+
+.genres {
+    background-color: rosybrown;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_genre {
+    height: 30px;
+    background-color: lavenderblush;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page {
+    width: 30px;
+    background-color: rosybrown;
+    color: lavenderblush;
+    display: flex;
+    justify-content: center;
+}

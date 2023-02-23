@@ -1,19 +1,17 @@
-import {StarRating} from "react-star-rating-input";
+import StarRatings from "react-star-ratings/build/star-ratings";
 
 const StarsRating = ({children}) => {
 
     return(
           <div>
-            <StarRating rating={(children/2)}
-                         numberOfStars={5}
+            <StarRatings rating={(children)}
+                         numberOfStars={10}
                          starRatedColor={'gold'}
                          starEmptyColor={'blue'}
                          starDimension={'15px'}
                          starSpacing={'2px'}/>
           </div>
 
-    )
-
-}
+    )}
 
 export {StarsRating};

@@ -1,11 +1,13 @@
-import {StarsRating} from "../StarRating/StarRating";
-import {GenreBadge} from "../GenreBadge/GenreBadge";
+import css from './movieInfo.module.css'
+
 
 const MovieInfo = ({movie}) => {
 
     return (
-        <div>
-
+        <div className={css.movie_info}>
+            <div className={css.upper}>
+                <div className={css.movie_title}>{movie.title}</div>
+            </div>
         </div>
     )
 }

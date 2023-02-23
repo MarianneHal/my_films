@@ -1,0 +1,54 @@
+.switch {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 70px;
+    color: whitesmoke;
+
+}
+
+.switch button {
+
+    background-color: whitesmoke;
+    border-radius: 50%;
+
+    color: #0e010e;
+    font-size: 24px;
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    border: none;
+
+}
+
+.switch button:hover {
+    opacity: 0.8;
+}
+
+.switch button:active {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 750px) {
+
+    .switch {
+        width: 55px;
+        font-size: 15px;
+    }
+
+    .switch button {
+        font-size: 20px;
+        width: 30px;
+        height: 30px;
+    }
+
+}

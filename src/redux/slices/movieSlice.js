@@ -7,8 +7,8 @@ const initialState = {
     errors: null,
     loading: null,
     movieDetails: {},
-    prev: null,
-    next: null
+    currentPages: 1,
+    totalPage: 1
 
 }
 
@@ -26,13 +26,26 @@ const getAll =  createAsyncThunk(
 
 const search = createAsyncThunk(
     'movieSlice/search',
-    async ({query}, {rejectWithValue}) => {
+    async ({query, page}, {rejectWithValue}) => {
 
         try {
-            const {data} = await movieService.searchMovies(query);
+            const {data} = await movieService.searchMovies(query, page);
             return data;
         } catch (e) {
             return rejectWithValue(e.response.data);
+        }
+    }
+);
+
+const getById = createAsyncThunk(
+    'moviesSlice/getById',
+    async ({id}, {rejectWithValue}) => {
+
+        try {
+            const {data} = await movieService.getById(id);
+            return data;
+        } catch (e) {
+            return rejectWithValue(e.response.data)
         }
     }
 );
@@ -41,20 +54,19 @@ const search = createAsyncThunk(
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
-    reducers: {
-        getMovieDetails: (state, action) => {
-            state.movieDetails = action.payload;
-        }
-    },
+    reducers: {},
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
                 state.movies = action.payload.results
                 state.loading = false;
                 state.errors = null;
-                state.prev = action.payload.page +1;
-                state.next = action.payload.page -1;
-                state.totalPage = action.payload.total_pages;
+                state.currentPage = action.payload.page;
+                if (action.payload.total_pages > 500) {
+                    state.totalPages = 500;
+                } else {
+                    state.totalPages = action.payload.total_pages;
+                }
 
             })
             .addCase(getAll.rejected, (state, action) =>{
@@ -63,6 +75,17 @@ const movieSlice = createSlice({
             })
             .addCase(getAll.pending, (state,action) => {
                 state.loading = true;
+            })
+            .addCase(search.fulfilled, (state, action) => {
+                state.movies = action.payload.results;
+                state.loading = false;
+                state.totalPages = action.payload.total_pages;
+                state.currentPage = action.payload.page;
+
+            })
+            .addCase(getById.fulfilled, (state, action) => {
+                state.movieDetails = action.payload
+                state.loading = false;
             })
 
 
@@ -74,7 +97,8 @@ const {reducer:movieReducer, actions:{getMovieDetails}} = movieSlice;
 const movieAction = {
     getAll,
     getMovieDetails,
-    search
+    search,
+    getById
 }
 
 export {

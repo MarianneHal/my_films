@@ -1,0 +1,25 @@
+.movie_info {
+    margin: 0 10px;
+    color: rosybrown;
+    font-size: 14px;
+}
+
+.movie_title {
+
+    color: rosybrown;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.upper {
+    height: 70px;
+}
+
+
+
+.badges {
+    width: 30px;
+    margin-left: 70px;
+}
