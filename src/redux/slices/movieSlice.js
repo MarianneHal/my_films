@@ -8,7 +8,8 @@ const initialState = {
     loading: null,
     movieDetails: {},
     currentPages: 1,
-    totalPage: 1
+    totalPage: 1,
+    popular: []
 
 }
 
@@ -50,6 +51,17 @@ const getById = createAsyncThunk(
     }
 );
 
+const getPopular =  createAsyncThunk(
+    'movieSlice/getPopular',
+    async (_, thunkApi) => {
+        try{
+            const {data} = await movieService.getPopular();
+            return data
+        }catch (e) {
+            return thunkApi.rejectWithValue(e.response.data)
+        }
+    }
+);
 
 const movieSlice = createSlice({
     name: 'movieSlice',
@@ -83,8 +95,26 @@ const movieSlice = createSlice({
                 state.currentPage = action.payload.page;
 
             })
+            .addCase(search.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(search.rejected, (state, action) => {
+                state.error = action.payload;
+                state.loading = false;
+            })
             .addCase(getById.fulfilled, (state, action) => {
                 state.movieDetails = action.payload
+                state.loading = false;
+            })
+            .addCase(getById.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getById.rejected, (state, action) => {
+                state.error = action.payload;
+                state.loading = false;
+            })
+            .addCase(getPopular.fulfilled, (state, action) =>{
+                state.popular = action.payload.results;
                 state.loading = false;
             })
 
@@ -98,7 +128,8 @@ const movieAction = {
     getAll,
     getMovieDetails,
     search,
-    getById
+    getById,
+    getPopular
 }
 
 export {

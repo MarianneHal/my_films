@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    background-color: lavenderblush;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mainDiv {
+    display: flex;
+    justify-content: center;
+}

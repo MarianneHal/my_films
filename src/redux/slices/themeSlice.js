@@ -3,12 +3,12 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     themes: {
         header: 'header_light',
-        main: 'main_light',
         card: 'card_light',
         body: 'body_light',
         details: 'details_light',
         form: 'form_light',
-        genres: 'genres_light'
+        genres: 'genres_light',
+        badges: 'badges_light'
     }
 };
 

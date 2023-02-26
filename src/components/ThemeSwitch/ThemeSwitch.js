@@ -9,24 +9,24 @@ const ThemeSwitch = () => {
 
     const light_themes = {
         header: 'header_light',
-        navbar: 'navbar_light',
         main: 'main_light',
         card: 'card_light',
         body: 'body_light',
         details: 'details_light',
         form: 'form_light',
-        genres: 'genres_light'
+        genres: 'genres_light',
+        badges: 'badges_light'
     };
 
     const dark_themes = {
         header: 'header_dark',
-        navbar: 'navbar_dark',
         main: 'main_dark',
         card: 'card_dark',
         body: 'body_dark',
         details: 'details_dark',
         form: 'form_dark',
-        genres: 'genres_dark'
+        genres: 'genres_dark',
+        badges: 'badges_dark'
     };
 
     const {themes} = useSelector(state => state.theme);

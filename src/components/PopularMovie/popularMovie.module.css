@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    background-color: floralwhite;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.img {
+    width: 150px;
+    height: 150px;
+}
