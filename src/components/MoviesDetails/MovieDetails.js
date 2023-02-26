@@ -3,14 +3,13 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faClose, faPlay} from "@fortawesome/free-solid-svg-icons";
+import {faClose} from "@fortawesome/free-solid-svg-icons";
 
 import {movieAction} from "../../redux";
 import {PosterPreview} from "../PosterPreview/PosterPreview";
 import css from './movieDetails.module.css';
-import {StarsRating} from "../StarRating/StarRating";
-import {TrailerPlayer} from "../TrailerPlayer/TrailerPlayer";
 import {MovieDetailsInfo} from "../MovieDetailsInfo/MovieDetailsInfo";
+import {movieService} from "../../services";
 
 
 
@@ -24,12 +23,16 @@ const MovieDetails = () => {
 
     const {themes} = useSelector(state => state.theme)
 
-    const [trailer, setTrailer] = useState(false);
+    const [key, setKey] = useState();
 
     useEffect(() => {
         dispatch(movieAction.getById({id}))
         console.log(movieDetails);
     }, [id]);
+
+    useEffect(() => {
+        movieService.getVideos(id).then(({data})=>setKey(data.results[0].key))
+    }, [])
 
 
     return (
@@ -50,20 +53,15 @@ const MovieDetails = () => {
                                                 movieTitle={movieDetails.title}>{movieDetails.poster_path}</PosterPreview> :
                                             <div className={css.background}>No photo</div>
                                     }
-                                    {
-                                        movieDetails.videos?.results ?
-                                            <button className={css.btn}
-                                                    onClick={() => setTrailer(true)}><FontAwesomeIcon icon={ faPlay }/> Play
-                                                Trailer
-                                            </button> :
-                                            <div></div>
-                                    }
-                                    {trailer && <TrailerPlayer
-                                        setTrailer={setTrailer}>{movieDetails.videos}</TrailerPlayer>}
+
                                 </div>
                                 <div className={css.right}>
+
+                                    <iframe src={`https://www.youtube.com/embed/${key}`} key={id}></iframe>
+
                                     <MovieDetailsInfo movieDetails={movieDetails}/>
                                 </div>
+
                             </div>
                             <div className={css.footer}>
                                 <h3>Description</h3>

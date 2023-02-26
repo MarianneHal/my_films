@@ -9,7 +9,8 @@ const movieService = {
     searchMovies: (query='', page=1) => apiService.get(urls.search, {params: {query, page}}),
     getGenre:() => apiService.get(urls.genres),
     getById: (id) => apiService.get(`${urls.movie}/${id}&append_to_response=videos`),
-    getPopular: () => apiService.get(urls.popular)
+    getPopular: () => apiService.get(urls.popular),
+    getVideos: (id, ) => apiService.get(`${urls.movie}/${id}/videos`)
 
 };
 

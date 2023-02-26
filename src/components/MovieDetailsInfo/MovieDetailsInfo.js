@@ -1,14 +1,17 @@
 import {useSelector} from "react-redux";
 
 import css from './movieDetailsInfo.module.css'
+import {useEffect, useState} from "react";
+import {movieService} from "../../services";
 
 
 
 const MovieDetailsInfo = ({movieDetails}) => {
 
     const {production_companies, production_countries, genres} = movieDetails;
-
     const {themes} = useSelector(state => state.theme);
+    const [key, setKey] = useState();
+
 
     return (
         <div>
